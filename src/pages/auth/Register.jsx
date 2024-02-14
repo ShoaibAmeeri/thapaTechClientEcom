@@ -24,6 +24,7 @@ function Register() {
   }
 
   const handleSubmit = (e) => {
+    const response = fetch("local")
     e.preventDefault()
     console.log(user)
   }
