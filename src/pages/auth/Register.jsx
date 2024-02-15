@@ -23,10 +23,25 @@ function Register() {
 
   }
 
-  const handleSubmit = (e) => {
-    const response = fetch("local")
+  const handleSubmit = async(e) => {
     e.preventDefault()
     console.log(user)
+
+    try {
+      
+      const response = await fetch(`http://localhost:5000/api/auth/register`, {
+        method : "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user)
+      })
+      
+      console.log(response)
+    } catch (error) {
+     console.log("from register route", error.message) 
+    }
+
   }
   return (
     <>
