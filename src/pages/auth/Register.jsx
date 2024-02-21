@@ -1,51 +1,59 @@
-import React, { useState } from "react";
-import "./auth.css"
+import "./auth.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/auth";
 
+const URL = `http://localhost:5000/api/auth/register`
 
 function Register() {
-
   const [user, setUser] = useState({
     username: "",
-    email : "",
-    phone : "",
-    password : "",
-  })
+    email: "",
+    phone: "",
+    password: "",
+  });
+  
+  const navigate = useNavigate();
+  const {storeTokenInLS} = useAuth()
 
   const handleInput = (e) => {
-    console.log(e)
-    let name = e.target.name
-    let value = e.target.value
+    console.log(e);
+    let name = e.target.name;
+    let value = e.target.value;
 
     setUser({
-        ...user,
-        [name] : value
-    })
+      ...user,
+      [name]: value,
+    });
+  };
 
-  }
-
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    console.log(user)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
 
     try {
-      
-      const response = await fetch(`http://localhost:5000/api/auth/register`, {
-        method : "POST",
+      const response = await fetch(URL, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user)
-      })
-      
-      console.log(response)
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        const res_data = await response.json()
+        console.log("response from server". res_data)
+        // store the token in localhost
+        storeTokenInLS(res_data.token)
+        setUser({username: "",email: "",phone: "",password: "",});
+        navigate("/login");
+      }
     } catch (error) {
-     console.log("from register route", error.message) 
+      console.log("from register route", error.message);
     }
-
-  }
+  };
   return (
     <>
-    <section>
+      <section>
         <main>
           <div className="section-registration">
             <div className="container grid grid-two-cols">
