@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import './contact.css'
+import { useAuth } from "../../store/auth";
+
 
 
 function Contact() {
@@ -9,6 +11,20 @@ function Contact() {
     email: "",
     message: ""
   })
+
+  const [userData, setUserData] = useState(true)
+
+  const {user} = useAuth() 
+
+  if (userData && user) {
+    setContact({
+      username : user.userData.username,
+      email: user.userData.email,
+      message: ""
+    })
+
+    setUserData(false)
+  }
 
   const handleInput = (e) => {
     let name = e.target.name
@@ -42,7 +58,7 @@ function Contact() {
         </div>
             <form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="username">username</label>
+                <label htmlFor="username"></label>
                 <input
                   type="text"
                   name="username"
