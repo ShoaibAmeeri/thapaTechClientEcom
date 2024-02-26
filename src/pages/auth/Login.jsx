@@ -36,7 +36,7 @@ function  Login() {
       body: JSON.stringify(user)
     }) 
     if(response.ok){
-      alert("login Successfully")
+      
       const res_data = await response.json()
       storeTokenInLS(res_data.token)
 
