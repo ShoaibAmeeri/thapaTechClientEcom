@@ -6,6 +6,12 @@ import { useAuth } from "../../store/auth";
 
 function Contact() {
 
+  const [user, setUser] = useState({
+    username : "",
+    email : "",
+    message: ""
+  })
+
   const [contact, setContact] = useState({
     username: "",
     email: "",
@@ -14,12 +20,12 @@ function Contact() {
 
   const [userData, setUserData] = useState(true)
 
-  const {user} = useAuth() 
+  const {User} = useAuth() 
 
-  if (userData && user) {
+  if (userData && User) {
     setContact({
-      username : user.userData.username,
-      email: user.userData.email,
+      username : User.userData.username,
+      email: User.userData.email,
       message: ""
     })
 

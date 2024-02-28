@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import './about.css'
 import Analytics from "../../components/Analytics";
+import { useAuth } from "../../store/auth";
+
+
 
 function About() {
+
+  
+
+  const {user} = useAuth() 
+
+
+
   return (
     <>
 
       <section className="section-hero">
         <div className="container grid grid-two-cols">
           <div className="hero-content">
+          <p>Welcome {user ? user.userData.username : "" } to our website</p>
             <p>We are the World Best IT Company</p>
             <h1>Why Choose Us</h1>
            
