@@ -8,7 +8,7 @@ import Login from './pages/auth/Login'
 import Navbar from './components/navbar/Navbar'
 import ErrorPage from './pages/Error/ErrorPage'
 import Footer from './components/footer/Footer'
-// import Logout from './pages/auth/logout'
+import Logout from './pages/auth/logout'
 
 function App() {
  
@@ -25,7 +25,7 @@ function App() {
       <Route path='/services' element={<Services/>} />
       <Route path='/register' element={<Register/>} />
       <Route path='/login' element={<Login/>} />
-      {/* <Route path='/logout' element={<Logout/>} /> */}
+      <Route path='/logout' element={<Logout/>} />
       <Route path='*' element={<ErrorPage/>} />
     </Routes>
     <Footer/>
