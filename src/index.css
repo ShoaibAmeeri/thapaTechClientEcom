@@ -360,6 +360,10 @@ a.active {
     grid-template-columns: repeat(3, 1fr);
     gap: 3.2rem;
   }
+  & .main-heading {
+    font-size: 28px;
+    font-weight: 700;
+  }
 
   & .card {
     display: flex;
